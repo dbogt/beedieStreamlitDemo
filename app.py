@@ -19,7 +19,14 @@ minDateDropdown = pd.to_datetime('2010-01-01')
 pickStart = st.sidebar.date_input("Pick start date:",begDate, min_value=begDate)
 pickEnd = st.sidebar.date_input("Pick start date:",endDate)
 
-st.write(df.loc[pickStart:pickEnd])
+filterDF = df.loc[pickStart:pickEnd] #keep the filtered version of table as new variable
+st.write(filterDF)
+
+#P3 Lessons folder - copy following codes to create charts
+import plotly.express as px
+fig = px.line(filterDF, x=filterDF.index, y="Close")
+st.plotly_chart(fig)
+
 
 st.write(begDate)
 st.write(endDate)
